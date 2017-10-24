@@ -1,0 +1,107 @@
+
+body {
+    font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    color: #929A99;
+}
+
+.barContainer {
+    margin: 6px 2px;
+    width: 60%;
+    min-width: 100px;
+    flex-wrap: wrap;
+    min-height: 10px;
+    display: flex;
+}
+
+#container {
+    border: 1px solid gray;
+    min-width: 400px;
+    margin: 0 auto;
+}
+
+.buyBar {
+    width: 0px;
+    min-width: 0px;
+    background: #51B0DC;
+    min-height: 40%;
+    height: 50%;
+    border-radius: 10px 0 0 10px;
+    box-sizing: border-box;
+}
+
+.buyers, .remnant {
+    flex-grow: 1;
+    font-size: 13px;
+    width: 17%;
+    margin-top: 4px;
+}
+
+.buyers {
+    position: relative;
+    right: 2px;
+}
+
+.sellBar {
+    border-radius: 0 10px 10px 0;
+    width: 100px;
+    min-width: 0px;
+    background: #D80003;
+    min-height: 50%;
+    height: 50%;
+    box-sizing: border-box;
+}
+
+.buySellContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+}
+
+tr:nth-child(odd) {
+    background: #EDF5F7;
+}
+
+.dispCode {
+    font-size: 17px;
+    padding: 10px;
+    width: 40%;
+}
+
+.sell {
+    position: relative;
+    top: 7px;
+    font-size: 13px;
+    margin-left: auto;
+    display: none;
+}
+
+.buy {
+    position: relative;
+    top: 7px;
+    font-size: 13px;
+    display: none;
+}
+
+#main-table {
+    margin: 20px auto;
+    border: 1px solid gray;
+    width: 350px;
+    border-collapse: collapse;
+    cursor: pointer;
+}
+
+p {
+    font-size: 17px;
+    margin: 10px 0 10px 25px;
+}
+
+#header-p {
+    color: #1881A8;
+    font-size: 25px;
+    margin: 20px 0 10px 25px;
+}
+
