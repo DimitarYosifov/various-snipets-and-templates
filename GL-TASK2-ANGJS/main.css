@@ -1,0 +1,195 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    overflow: hidden;
+    border: none;
+}
+
+#app {
+    background: #676464;
+    width: 1200px;
+    height: 900px;
+    min-height: 900px;
+    border: 2px solid black;
+    margin: 0 auto;
+    position: relative;
+}
+
+table, th, td {
+    border: solid 1px #DDD;
+    padding: 3px;
+    font: 14px Verdana;
+    text-align: center;
+
+}
+
+tr:nth-child(odd) {
+    background: #d0d0d0;
+}
+
+tr:nth-child(even) {
+    color: white;
+}
+
+td {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+table {
+    margin: 20px auto;
+    width: 1150px;
+}
+
+tr {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+img {
+    width: 150px;
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+.id {
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.name {
+    width: 380px;
+    min-width: 380px;
+}
+
+.image {
+    width: 150px;
+    min-width: 150px;
+}
+
+.description {
+    width: 350px;
+    min-width: 350px;
+}
+
+.manufacturer {
+    width: 100px;
+    min-width: 100px;
+}
+
+.price {
+    width: 50px;
+    min-width: 50px;
+}
+
+#app tr > th {
+    height: 30px;
+!important;
+    min-height: 30px;
+!important;
+    font-weight: bold;
+}
+
+#page-btns-container {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+}
+
+#articles-number {
+    position: relative;
+    font-size: 25px;
+    left: 250px;
+    font-family: Verdana;
+    display: inline-block;
+    width: 350px;
+}
+
+label {
+    font-family: Verdana;
+}
+
+#page {
+    font-size: 30px;
+    position: relative;
+    left: 210px;
+    margin: 0 20px;
+    font-family: Verdana;
+}
+
+#page-btns-container > button {
+    position: relative;
+    left: 210px;
+}
+
+form {
+    text-align: center;
+}
+
+input {
+    padding: 4px;
+    margin: 5px;
+    background: black;
+    color: white;
+}
+
+#search-manufacture {
+    text-align: center;
+    margin: 0 auto;
+    display: inline-grid;
+}
+
+select {
+    background: black;
+    color: white;
+    padding: 4px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: none;
+}
+
+select option:hover {
+    background: transparent;
+}
+
+#manifacturer-search-container {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    left: 40px;
+}
+
+#user-content {
+    border: 2px solid black;
+    background: #e3dfdf;
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    width: 99%;
+    transform: translate(50%);
+}
+
+button:hover {
+    cursor: pointer;
+}
+

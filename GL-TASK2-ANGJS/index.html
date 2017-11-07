@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myController" id="app">
+
+    <table>
+        <tr>
+            <th class="image">Image</th>
+            <th class="id">ID</th>
+            <th class="name">Name</th>
+            <th class="description">Description</th>
+            <th class="manufacturer">Manufacturer</th>
+            <th class="price">Price</th>
+        </tr>
+        <tr ng-init="displayedQuestion=SetPreview(item)"
+            ng-repeat="item in list.slice((currentPage -1) * itemsPerPage, currentPage * itemsPerPage)">
+            <td class="image"><img ng-src="{{item.image}}" alt="missing photo"></td>
+            <td class="id">{{item.id}}</td>
+            <td class="name">{{item.name}}</td>
+            <td class="description">{{item.description}}</td>
+            <td class="manufacturer">{{item.manufacturer}}</td>
+            <td class="price">{{item.price}}</td>
+        </tr>
+    </table>
+    <div id="user-content">
+        <div id="page-btns-container">
+            <button ng-disabled="currentPage===1" id="previous-page" ng-click="currentPage=currentPage-1">Previous page
+            </button>
+            <span id="page">Page {{currentPage}}</span>
+            <button ng-disabled="currentPage===maxPages" id="next-page" ng-click="currentPage=currentPage+1">Next page
+            </button>
+            <span id="articles-number" ng-model="totalArticles">Articles found: {{data.length}}</span>
+        </div>
+        <form name="myForm">
+            <label>Min-price:
+                <input type="number" name="input" ng-model="min.value" ng-init="min.value=0" ng-change="onChange()"
+                       min="0">
+            </label>
+            <label>Max-price:
+                <input type="number" name="input" ng-model="max.value" ng-init="max.value=99999" ng-change="onChange()"
+                       min="0">
+            </label>
+        </form>
+        <div id="manifacturer-search-container">
+            <label id="search-manufacture">By manufacturer:
+                <select ng-model="selectedName" ng-options="x.manufacturer for x in manufacturers"
+                        ng-change="onChange()">
+                    <option value="">All</option>
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script>
+    data = [];
+    rawData = [];
+    manufacturers = [];
+    app = angular.module('myApp', []);
+    app.controller('myController',
+            function ($scope, $http) {
+                $scope.onChange = function () {
+
+                    $scope.data = $scope.rawData;
+
+                    if ($scope.min.value >= $scope.max.value) {
+                        $scope.max.value = $scope.min.value
+                    }
+
+                    $scope.data = $scope.data.filter(e=>e.price >= $scope.min.value && e.price <= $scope.max.value)
+
+                    if ($scope.selectedName) {
+                        $scope.data = $scope.data.filter(e=>e.manufacturer === $scope.selectedName.manufacturer)
+                    }
+
+                    $scope.maxPages = Math.ceil($scope.data.length /  $scope.itemsPerPage);
+                    $scope.currentPage = 1;
+                    $scope.list = $scope.data;
+                };
+
+                $scope.SetPreview = function (item) {
+                    return item;
+                };
+
+                let request = {
+                    method: 'get',
+                    url: 'data.json',
+                    dataType: 'json',
+                    contentType: "application/json"
+                };
+
+                $scope.currentPage = 1;
+                $scope.itemsPerPage = 5;
+                $scope.maxPages = 1;
+
+                $http(request)
+                        .success(function (jsonData) {
+                            $scope.rawData = jsonData;
+                            $scope.data = $scope.rawData;
+                            $scope.maxPages = Math.ceil(data.length /  $scope.itemsPerPage);
+
+                            $scope.rawData.forEach(function (a) {
+                                let found = false;
+                                manufacturers.forEach(function (b) {
+                                    if (b.manufacturer === a.manufacturer) {
+                                        found = true;
+                                    }
+                                });
+                                if (!found) {
+                                    manufacturers.push(a);
+                                }
+                            });
+
+                            $scope.list = $scope.data;
+                            manufacturers.sort((a, b) => a.manufacturer.localeCompare(b.manufacturer));
+                            $scope.manufacturers = manufacturers;
+                        })
+                        .error(function () {
+                            console.log(Error)
+                        });
+            })
+</script>
+</html>
