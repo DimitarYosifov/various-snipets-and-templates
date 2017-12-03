@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body ng-app="app">
+
+
+<div ng-controller="controller1">
+    <span>Values:</span>
+    <input type="text" ng-model="name" value="00"/>
+    <input type="text" ng-model="age"/>
+    <input type="text" ng-model="city"/>
+    <button ng-click="updateData()">Update</button>
+    <span>{{result}}</span>
+    <span ng-switch="age">
+       <span ng-switch-when="11">eleven</span>
+    </span>
+    <ol start="1">
+        <li ng-repeat="a in arr" style="background: #c8fdff" ng-if="$index>1&&$odd">
+            {{a}}
+        </li>
+    </ol>
+</div>
+
+<hr>
+
+<div ng-controller="newItemController">
+    <input type="text" ng-model="newItem" ng-change="checkItem(newItem)"/>
+    <button ng-click="addItem(newItem)">Add</button>
+    <span>{{check}}</span>
+    <span style="color: red; background: #fff76c">{{error}}</span>
+
+    <ul>
+        <li ng-repeat='i in items track by $index'>
+            {{i}}
+        </li>
+    </ul>
+</div>
+
+<hr>
+
+<div ng-controller="checkBoxController">
+    <ul>
+        <li ng-repeat='i in items'>
+            <label>
+                <input type="checkbox" ng-disabled="isPurchaseMade" ng-model="i.selected" ng-checked="selectAll"
+                       ng-change="getTotalPrice()">
+                <span ng-style="{ 'opacity' : (i.selected) ? '1' : '0.5' ,'background' : (i.selected) ? '#ffd875' : 'white'}"> {{i.color}}  {{i.price}}$</span>
+            </label>
+        </li>
+    </ul>
+    <label ng-hide="isPurchaseMade">
+        <input type="checkbox" ng-change="selectAllItems()" ng-model="selectAll">
+        <span>Select all</span>
+    </label>
+    <p ng-model="i.selected">Total price:{{x}} $</p>
+    <button ng-hide="isPurchaseMade" ng-click="purchaseMade()">Purchase</button>
+
+
+    <span style="font-weight: bold;" ng-show="isPurchaseMade" ng-repeat="i in items"
+          ng-if="i.selected">{{i.color}}&nbsp</span>
+
+</div>
+
+<hr>
+
+<div ng-controller="filtersAndDates">
+
+    <label>
+        <input type="text" ng-model="number" placeholder="Enter numbers">
+        <p>{{number|number}}</p>
+        <p>{{-number|number}}</p>
+        <p>{{number|number:3}}</p>
+    </label>
+
+
+    <p>Current Date</p>
+    <p>{{currentDate|date:'medium'}}</p>
+    <p>{{currentDate|date:'dd/MM/yyyy'}}</p>
+    <p>{{currentDate|date:'h:mm'}}</p>
+    <p>{{stringLimit| limitTo:4}}</p>
+
+    <ul>
+        <li ng-repeat="item in limitedArray|limitTo:3">{{item}}</li>
+    </ul>
+
+
+    <ul>
+        <li ng-repeat="item in weather">{{item.day+': '}} {{item.rain|customFilter}}</li>
+    </ul>
+
+
+</div>
+
+
+</body>
+</html>
+
+
