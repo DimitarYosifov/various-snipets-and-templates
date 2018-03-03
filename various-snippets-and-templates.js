@@ -185,3 +185,162 @@
 // //if value is not string
 // arr.sort((a, b) => a.value.toString().localeCompare(b.value))
 
+
+//    https://randomuser.me/api/?results=10
+
+
+//    ---------------------------------------------------------------
+// CALLBACK
+//    ---------------------------------------------------------------
+
+//            function a() {
+//                console.log('aa');
+//            }
+//
+//            function b(callback) {
+//                console.log('bb');
+//                setTimeout(function () {
+//                    callback()
+//                },2000)
+//            }
+//            b(a)
+
+//    ---------------------------------------------------------------
+//PROMISE PATTERN 1
+//    ---------------------------------------------------------------
+
+//    let getPromises = function () {
+//        promise1
+//            .then(x => {
+//                console.log(x);
+//            })
+//            .catch(x => {
+//                console.log(x);
+//            })
+//    }
+//
+//    let promise1 = new Promise(function (resolve, reject) {
+//        var data = [1]
+//        var err = 'errorr'
+//        setTimeout(function () {
+//            if (data[0] === 1) {
+//                resolve(data)
+//            }
+//            else {
+//                reject(err)
+//            }
+//        }, 1000);
+//    })
+//    getPromises()
+
+//    ---------------------------------------------------------------
+//PROMISE PATTERN 2 (USING VARIABLES)
+//    ---------------------------------------------------------------
+
+//    let api = new Promise(function (resolve, reject) {
+//        setTimeout(function () {
+//            resolve('timeout 1s')
+//        }, 1000)
+//    })
+//
+//    let api2 = new Promise(function (resolve, reject) {
+//        setTimeout(function () {
+//            resolve('timeout 2s')
+//        }, 2000)
+//    })
+//
+//    let api3 = new Promise(function (resolve, reject) {
+//        setTimeout(function () {
+//            resolve('timeout 3s')
+//        }, 3000)
+//    })
+//
+//    let prom = function () {
+//        api.then(function (result) {
+//            console.log(result)
+//            return api2;
+//        }).then(function (result2) {
+//            console.log(result2)
+//            return api3;
+//        }).then(function (result3) {
+//            console.log(result3)
+//            // do work
+//        }).catch(function (error) {
+//            //handle any error that may occur before this point
+//        }).then(function () {
+//            console.log('44')
+//            //do something whether there was an error or not
+//            //like hiding an spinner if you were performing an AJAX request.
+//        });
+//    }
+////    prom()
+
+//    ---------------------------------------------------------------
+//PROMISE PATTERN 3 PROMISE ALL USING VARIABLES (WAITS FOR ALL PROMISES TO FINISH)
+//    ---------------------------------------------------------------
+
+//    Promise.all([api, api2, api3]).then(function(result) {
+//        console.log(result)
+//        //do work. result is an array contains the values of the three fulfilled promises.
+//    }).catch(function(error) {
+//        //handle the error. At least one of the promises rejected.
+//    });
+
+//    ---------------------------------------------------------------
+//PROMISE PATTERN 4 ((USING FUNCTIONS))
+//    ---------------------------------------------------------------
+
+//    function one() {
+//        return new Promise(resolve => {
+//            setTimeout(function () {
+//                resolve(22)
+//            }, 1000)
+//        })
+//    }
+//
+//    function two(x) {
+//        return new Promise(resolve => {
+//            setTimeout(function () {
+//                resolve(x+33)
+//            }, 2000)
+//        })
+//    }
+//
+//    function three(x) {
+//        return new Promise(resolve => {
+//            setTimeout(function () {
+//                resolve(x+44)
+//            }, 2000)
+//        })
+//    }
+//
+//
+//    function getResults(callback) {
+//        return one().then(two).then(three)
+//    }
+//
+//    getResults().then(result=>{
+//        console.log(result);
+//    })
+
+
+//    ---------------------------------------------------------------
+//   FOREACH  VS MAP
+//    ---------------------------------------------------------------
+//  It’s important to also understand that using map() may be preferable if you favor functional programming.
+//  This is because forEach() affects and changes our original Array, whereas map()
+//  returns an entirely new Array — thus leaving the original array unchanged.
+
+
+//    let arr = [1, 2, 3, 4, 5];
+//
+//    arr.forEach((num, index) => {
+//        return arr[index] = num * 2;
+//    });
+//
+//    let doubled = arr.map(num => {
+//        return num * 2;
+//    });
+
+// arr = [2, 4, 6, 8, 10]
+//    ---------------------------------------------------------------
