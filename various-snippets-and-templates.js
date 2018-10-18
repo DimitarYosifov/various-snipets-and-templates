@@ -4,7 +4,7 @@
 // }
 
 
-// let starsFunc = function (i) {
+// let starsFunc = function (i) 
 //     console.log("**".repeat(i))
 // };
 // // repeatIt(3, starsFunc)
@@ -41,6 +41,34 @@
 // f(4,'-');
 // f(4,'+');
 // f(4,'-');
+
+//CLOSURE 2!!!!!!!!!!!!!!!!
+//
+//let a =(function () {
+//    let aaa=3
+//    return {
+//        test:function () {
+//            
+//            
+//            console.log(aaa);
+//            aaa+=3
+//        },
+//        test2:function () {
+//            console.log(aaa);
+//        }
+//    }
+//    
+//}())
+//a.test()   //3
+//a.test2()  //6
+//a.test()   //6
+//a.test2()  //9
+
+//COPY OBJECT
+//let obj2=Object.assign({}, obj1);
+
+//COPY ARRAY
+//let arr2=arr1.slice()
 
 // function oi(x) {
 //     x=x||244
@@ -344,3 +372,42 @@
 
 // arr = [2, 4, 6, 8, 10]
 //    ---------------------------------------------------------------
+
+////PROTOTYPE
+//let t=function (a,b,c) {
+//    this.a=a,
+//    this.b=b,
+//    this.c=c
+//}
+//let one = new t(1,2,3)
+//one.d=4
+//console.log(one.d);     //4
+//console.log(one);       //{a: 1, b: 2, c: 3, d: 4}
+//t.prototype.d=555      
+//let two = new t(1,2,3) 
+//console.log(two.d);     //555
+//console.log(two);       //{a: 1, b: 2, c: 3}
+
+//---------------------------------------------------------------------------
+   
+//CALL,APPLY, BIND--------------------------------------
+
+//let obj = {
+//    num: 4
+//};
+//function add(a, b , c) {
+//    return this.num + a + b + c;
+//};
+
+////CALL
+//// first arg is always  the object name
+//console.log(add.call(obj, 11, 22,33));   //37
+
+//APPLY
+//let arr=[11,22,33];
+////// first arg is always  the object name and second array instead of single values( like call)
+//console.log(add.apply(obj, arr));   //70
+
+//BIND
+//let bound=add.bind(obj);
+//console.log(bound(11,22,33));      //70
