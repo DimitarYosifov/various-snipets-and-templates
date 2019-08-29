@@ -411,3 +411,73 @@
 //BIND
 //let bound=add.bind(obj);
 //console.log(bound(11,22,33));      //70
+
+//CLASS WITH METHOD CHAINING!!!!------------------------------------------------------------------------------------------------
+ class User {
+                constructor(...args) {
+                    this.height = args[0];
+                    this.width = args[1];
+                }
+                calc() {
+                    console.log("ssss");
+                    return this; //this is needed  method chaining to work!!!!!!!!!!
+                }
+                calc2() {
+                    console.log("rrrrr");
+                }
+            }
+            let user = new User(1, 2);
+
+//----------method chaining!-------------|
+            user.calc().calc2();       //|
+//----------method chaining!-------------|
+               
+            class Admin extends User {
+                constructor(...args) {
+                    super(...args);          //this is needed for admin to inherit user properties!!!!!
+                    this.addProp = args[2];
+                }
+                delete() {
+                    console.log("delete");
+                    return this;
+                }
+            }
+            ;
+            let admin = new Admin(1, 2, 900);
+            admin.delete();
+
+//          CLASS SIMULATION WITH PROTOTYPES!-----------------------------------------------------------------------------------
+            function User(email, name) {
+                this.email = email;
+                this.name = name;
+                this.online = false;
+            }
+
+            User.prototype.login = function () {
+                this.online = true;
+                console.log(`${this.name} has logged in`);
+            };
+
+            User.prototype.logout = function () {
+                this.online = false;
+                console.log(`${this.name} has logged out`);
+            };
+
+            function Admin(...args) {
+                User.apply(this, args);
+                this.role = "super admin";
+            }
+
+//          THIS IS HOW ADMIN INHERITS USER METHODS LOGIN AND LOGOUT------|
+            Admin.prototype = Object.create(User.prototype);            //|
+//          THIS IS HOW ADMIN INHERITS USER METHODS LOGIN AND LOGOUT------|
+
+            let userOne = new User("fool@abv.bg", "fool");
+            let userTwo = new User("idiot@abv.bg", "idiot");
+            let admin = new Admin("admin@abv.bg", "admin");
+
+            userOne.login();
+            userTwo.logout();
+
+
+
